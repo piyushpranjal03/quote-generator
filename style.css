@@ -98,6 +98,23 @@ button:active {
   }
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8rem;
+  background: rgb(59, 59, 59);
+  padding: 1rem;
+  color: #fff;
+}
+
+footer a {
+  color: #fff;
+}
+
 /* Media Query for Small Display */
 @media screen and (max-width: 1000px) {
   .quote-container {
