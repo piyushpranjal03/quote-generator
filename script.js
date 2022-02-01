@@ -25,19 +25,19 @@ async function getQuote() {
   // Notice that ? before adding parameters
   const apiUrl = "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
 
-  // Using a proxy API to get the data from above usl
+  // Using a proxy API to get the data from above url
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   try {
     const response = await fetch(proxyUrl + apiUrl);
     const data = await response.json();
-    // If author name is black add unknown
+    // If author name is blank add unknown
     data.quoteAuthor === "" ? (author.textContent = "unknown") : (author.textContent = data.quoteAuthor);
     data.quoteText.length > 100 ? quote.classList.add("long-quote") : quote.classList.remove("long-quote");
     quote.textContent = data.quoteText;
   } catch (error) {
-    // We may get an error if json data have some quotes so
-    // That's why if this catch block runs anyway we will call the same function again
-    console.log("inside catch");
+    // We may get an error if json data have some punctuation, or cors is blocking the fetch request
+    // Hence, if this catch block runs anyway default html data will be loaded
+    // And we can request for the new quote using the button and call this function again.
     console.log("Something went wrong!", error);
   }
   completeLoading();
